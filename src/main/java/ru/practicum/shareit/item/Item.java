@@ -1,6 +1,6 @@
-package ru.practicum.shareit.user;
+package ru.practicum.shareit.item;
 
-import jakarta.validation.constraints.*;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,11 +11,13 @@ import lombok.experimental.FieldDefaults;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = { "email" })
+@EqualsAndHashCode(of = { "id" })
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User {
+public class Item {
 	Long id;
 	String name;
-	@Email
-	String email;
+	String description;
+	Boolean available;
+	Long owner;
+	Long request;
 }
