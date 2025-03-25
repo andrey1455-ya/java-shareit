@@ -1,21 +1,19 @@
 package ru.practicum.shareit.user;
 
-import jakarta.validation.constraints.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = { "email" })
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
 	Long id;
 	String name;
-	@Email
 	String email;
 }
