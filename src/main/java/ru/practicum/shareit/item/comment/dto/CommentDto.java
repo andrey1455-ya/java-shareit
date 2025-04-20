@@ -1,9 +1,10 @@
-package ru.practicum.shareit.comment.dto;
+package ru.practicum.shareit.item.comment.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 import ru.practicum.shareit.item.dto.ItemDto;
+
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package ru.practicum.shareit.comment.model;
+package ru.practicum.shareit.item.comment.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
 package ru.practicum.shareit.item.interfaces;
 
-import ru.practicum.shareit.comment.dto.CommentDto;
+import ru.practicum.shareit.item.comment.dto.CommentDto;
 import ru.practicum.shareit.item.dto.ExtendedItemDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.dto.UpdateItemDto;
