@@ -1,17 +1,13 @@
 package ru.practicum.shareit.user.dto;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class UserDto {
-	private Long id;
-	@NotBlank
+public class UserUpdateDto {
 	private String name;
 	@Email(message = "Email должен быть корректный")
-	@NotBlank
 	private String email;
 }
