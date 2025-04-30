@@ -38,12 +38,13 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	@Transactional
 	public ItemDtoRequest createItem(Long id, CreateItemDto dto) {
-		User itemOwner = userRepository.findById(id).orElseThrow(() -> new NotFoundException(String.format("Пользователь с id = %s не найден", id)));
+		User itemOwner = userRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Пользователь с id = " + id + " не найден"));
 		Item item = ItemMapper.mapToItem(dto);
 		item.setOwner(itemOwner);
+
 		Long itemRequestId = null;
 		if (dto.getRequestId() != null) {
-			checkItemRequest(dto.getRequestId());
 			ItemRequest itemRequest = itemRequestRepository.findById(dto.getRequestId())
 					.orElseThrow(() -> new NotFoundException("Запрос с id = " + dto.getRequestId() + " не найден"));
 			item.setItemRequest(itemRequest);
@@ -51,6 +52,7 @@ public class ItemServiceImpl implements ItemService {
 		}
 		return ItemMapper.toItemDtoRequest(itemRepository.save(item), itemRequestId);
 	}
+
 
 	@Override
 	public ItemDto updateItem(Long itemId, UpdateItemDto dto, Long userId) {

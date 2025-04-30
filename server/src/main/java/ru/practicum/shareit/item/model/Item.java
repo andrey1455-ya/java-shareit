@@ -8,13 +8,12 @@ import ru.practicum.shareit.user.model.User;
 import java.util.List;
 
 @Builder(toBuilder = true)
-@Data
-@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "items")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

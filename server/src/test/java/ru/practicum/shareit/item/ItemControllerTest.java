@@ -40,7 +40,11 @@ class ItemControllerTest {
 
     @BeforeEach
     void beforeEach() {
-        item1 = CreateItemDto.builder().name("Yandex").description("YandexPracticum").available(true).build();
+        item1 = CreateItemDto.builder()
+                .name("Yandex")
+                .description("YandexPracticum")
+                .available(true)
+                .build();
         item2 = ItemDto.builder()
                 .id(1L)
                 .name("Yandex")
@@ -78,24 +82,28 @@ class ItemControllerTest {
                 .andExpect(jsonPath("$.name").value("Yandex"))
                 .andExpect(jsonPath("$.description").value("YandexPracticum"))
                 .andExpect(jsonPath("$.available").value(true))
-                .andExpect(jsonPath("$.ownerId").value(1L));
+                .andExpect(jsonPath("$.ownerId").value(1));
     }
 
     @Test
     void shouldReturnOkWhenUpdateItem() throws Exception {
-        UpdateItemDto itemUpdate = UpdateItemDto.builder().name("Yandex").description("YandexPracticum").available(true).build();
+        UpdateItemDto itemUpdate = UpdateItemDto.builder()
+                .name("Yandex")
+                .description("YandexPracticum")
+                .available(true)
+                .build();
         when(itemService.updateItem(1L, itemUpdate, 1L)).thenReturn(item2);
 
         mockMvc.perform(patch("/items/1")
                         .header("X-Sharer-User-Id", 1)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(item1)))
+                        .content(objectMapper.writeValueAsString(itemUpdate)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.name").value("Yandex"))
                 .andExpect(jsonPath("$.description").value("YandexPracticum"))
                 .andExpect(jsonPath("$.available").value(true))
-                .andExpect(jsonPath("$.owner").value(User.builder().id(1L).build()));
+                .andExpect(jsonPath("$.owner.id").value(1));
     }
 
     @Test
@@ -117,7 +125,7 @@ class ItemControllerTest {
                 .andExpect(jsonPath("$.name").value("Yandex"))
                 .andExpect(jsonPath("$.description").value("YandexPracticum"))
                 .andExpect(jsonPath("$.available").value(true))
-                .andExpect(jsonPath("$.owner").value(User.builder().id(1L).build()));
+                .andExpect(jsonPath("$.owner.id").value(1));
     }
 
     @Test
@@ -132,7 +140,7 @@ class ItemControllerTest {
                 .andExpect(jsonPath("$[1].name").value("Yandex2"))
                 .andExpect(jsonPath("$[1].description").value("YandexPracticum2"))
                 .andExpect(jsonPath("$[1].available").value(true))
-                .andExpect(jsonPath("$[1].owner").value(User.builder().id(1L).build()));
+                .andExpect(jsonPath("$[1].owner.id").value(1));
     }
 
     @Test
@@ -148,7 +156,7 @@ class ItemControllerTest {
                 .andExpect(jsonPath("$[1].name").value("Yandex2"))
                 .andExpect(jsonPath("$[1].description").value("YandexPracticum2"))
                 .andExpect(jsonPath("$[1].available").value(true))
-                .andExpect(jsonPath("$[1].owner").value(User.builder().id(1L).build()));
+                .andExpect(jsonPath("$[1].owner.id").value(1));
     }
 
     @Test
